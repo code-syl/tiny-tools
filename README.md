@@ -1,2 +1,2 @@
 # tiny-tools
-A collection of tiny tools to help with my life
+This repository houses a collection of tiny tools I developed to make things easier.
