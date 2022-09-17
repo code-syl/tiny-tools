@@ -1,5 +1,7 @@
-﻿//var input = new List<int>() { 9, 15, 3, 10, 5, 14, 6, 16, 11 };
-//const int magicNumber = 22;
+﻿// 9 15 3 10 5 14 6 16 11
+// 22
+
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 
 Console.WriteLine(
     "Please enter your numbers separated by a space." + '\n' + 
@@ -9,7 +11,7 @@ var numbers = new List<int>();
 
 while(true) 
 {
-    var input = Console.ReadLine().ToNumberSet();
+    var input = new List<int>() {9,15,3,10,5,14,6,16,11};//Console.ReadLine().ToNumberSet();
     if (input.Count > 0 && input.Count % 3 == 0)
     {
         numbers = input;
@@ -27,7 +29,7 @@ int magicNumber;
 
 while (true) 
 {
-    var input = Console.ReadLine();
+    var input = "22";//Console.ReadLine();
     if (int.TryParse(input, out var number))
     {
         magicNumber = number;
@@ -37,6 +39,4 @@ while (true)
     Console.WriteLine("Please check your input and try again.");
 }
 
-
-
-Console.ReadKey();
+bool success = NumberDissector.FindTrios(magicNumber, numbers, out _);
