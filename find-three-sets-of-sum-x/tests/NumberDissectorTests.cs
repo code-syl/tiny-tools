@@ -96,7 +96,7 @@ public class NumberDissectorTests
     public void FindTrios_WhenNotEnoughTriosAreFound_ShouldReturnFalseAndALimitedSet() 
     {
         // Arrange
-        var input = new List<int>() { 7, 2, 1, 1, 1, 1 };
+        var input = new List<int>() { 8, 2, 1, 1, 1, 1 };
         var requestedNumberOfTrios = 2;
 
         // Act
@@ -116,6 +116,33 @@ public class NumberDissectorTests
             .Should()
             .NotBeEmpty()
             .And.HaveCount(1)
+            .And.OnlyContain(subset => subset.Sum() == MagicNumber);
+    }
+
+    [Fact]
+    public void FindTrios_WhenAllRequestedTriosAreFound_ShouldReturnTrueAndFullSet() 
+    {
+        // Arrange
+        var input = new List<int>() { 3, 3, 4, 7, 2, 1, 8, 1, 1 };
+        var requestedNumberOfTrios = 3;
+
+        // Act
+        var result = NumberDissector.FindTrios(
+            MagicNumber,
+            input,
+            requestedNumberOfTrios,
+            out var output
+        );
+
+        // Assert
+        result  
+            .Should()
+            .BeTrue();
+        
+        output
+            .Should()
+            .NotBeEmpty()
+            .And.HaveCount(requestedNumberOfTrios)
             .And.OnlyContain(subset => subset.Sum() == MagicNumber);
     }
 }
