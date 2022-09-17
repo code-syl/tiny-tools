@@ -39,4 +39,4 @@ while (true)
     Console.WriteLine("Please check your input and try again.");
 }
 
-bool success = NumberDissector.FindTrios(magicNumber, numbers, out _);
+bool success = NumberDissector.FindTrios(magicNumber, numbers, 3, out _);
