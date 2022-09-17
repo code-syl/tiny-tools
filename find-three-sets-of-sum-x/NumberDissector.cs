@@ -13,13 +13,6 @@ public static class NumberDissector
         if (!input.Any() || input.Count() % 3 != 0)
             throw new ArgumentException(nameof(input), "Input list is invalid.");
 
-        Console.WriteLine("Input: ");
-        foreach (var number in input) 
-        {
-            Console.Write(number + ", ");
-        }
-        Console.WriteLine();
-
         for (int i = 0; i < input.Count; i++) 
         {
             for (int j = i + 1; j < input.Count; j++) 
@@ -28,9 +21,13 @@ public static class NumberDissector
                 {
                     if (input[i] + input[j] + input[k] == magicNumber) 
                     {
-                        output.Add(new List<int>() { input[i], input[j], input[k] });
+                        var values = new List<int>() { input[i], input[j], input[k] };
+                        output.Add(values);
                         if (output.Count() == numberOfTriosToFind) 
                             return true;
+
+                        foreach (var value in values)
+                            input.Remove(value);
                     }
                 }
             }
