@@ -3,9 +3,9 @@ public static class NumberDissector
     // Time complexity: O(n^3), 
     // or quicker depending on when the algorithm has found the required amount of trios.
     public static bool FindTrios(
-        in int magicNumber, 
-        in List<int> input, 
-        in int numberOfTriosToFind, 
+        int magicNumber, 
+        List<int> input, 
+        int numberOfTriosToFind, 
         out List<List<int>> output) 
     {
         output = new List<List<int>>();
