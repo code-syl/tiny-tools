@@ -13,25 +13,40 @@ public static class NumberDissector
         if (!input.Any() || input.Count() % 3 != 0)
             throw new ArgumentException(nameof(input), "Input list is invalid.");
 
-        for (int i = 0; i < input.Count; i++) 
+        var tries = 0;
+        while (tries < numberOfTriosToFind) 
         {
-            for (int j = i + 1; j < input.Count; j++) 
+            var running = true;
+            while (running) 
             {
-                for (int k = j + 1; k < input.Count; k++)
+                for (int i = 0; i < input.Count && running; i++) 
                 {
-                    if (input[i] + input[j] + input[k] == magicNumber) 
+                    for (int j = i + 1; j < input.Count && running; j++) 
                     {
-                        var values = new List<int>() { input[i], input[j], input[k] };
-                        output.Add(values);
-                        if (output.Count() == numberOfTriosToFind) 
-                            return true;
+                        for (int k = j + 1; k < input.Count && running; k++)
+                        {
+                            if (input[i] + input[j] + input[k] == magicNumber) 
+                            {
+                                var values = new List<int>() { input[i], input[j], input[k] };
+                                output.Add(values);
+                                if (output.Count() == numberOfTriosToFind) 
+                                    return true;
 
-                        foreach (var value in values)
-                            input.Remove(value);
+                                foreach (var value in values)
+                                    input.Remove(value);
+
+                                running = false;
+                            }
+                        }
                     }
                 }
+                
+                running = false;
             }
+
+            tries++;
         }
+        
         
         return (output.Count == numberOfTriosToFind);
     } 
